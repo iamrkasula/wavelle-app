@@ -1,0 +1,109 @@
+/* Wavelle site: the Tides look (paper-cut sea, mist, sea teal, apricot sun). Fonts self-hosted (SIL OFL). */
+@font-face { font-family: "Lora"; src: url("fonts/Lora-SemiBold.woff2") format("woff2"); font-weight: 600; font-display: swap; }
+@font-face { font-family: "Lora"; src: url("fonts/Lora-MediumItalic.woff2") format("woff2"); font-weight: 500; font-style: italic; font-display: swap; }
+@font-face { font-family: "Inter"; src: url("fonts/Inter-Regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Inter"; src: url("fonts/Inter-SemiBold.woff2") format("woff2"); font-weight: 600; font-display: swap; }
+
+:root {
+  --mist: #EEF3F2; --card: #FFFFFF; --ink: #12313A; --ink2: #4B6670; --line: #D5E2E0;
+  --tide: #0E5E6F; --tide2: #4FA3A5; --tide3: #A8D5D1; --sun: #E8894A; --sky1: #F3E7DA; --sky2: #E4EFED;
+  --night1: #0B2A33; --night2: #123A44;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --mist: #0B1F24; --card: #132C32; --ink: #E6F0EF; --ink2: #9AB3B7; --line: #24454C;
+    --tide: #5FC1C4; --tide2: #3C8F95; --tide3: #1C4C55; --sun: #F2A36B; --sky1: #0B2A33; --sky2: #123A44;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --mist: #0B1F24; --card: #132C32; --ink: #E6F0EF; --ink2: #9AB3B7; --line: #24454C;
+  --tide: #5FC1C4; --tide2: #3C8F95; --tide3: #1C4C55; --sun: #F2A36B; --sky1: #0B2A33; --sky2: #123A44;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--mist); color: var(--ink); font: 17px/1.6 "Inter", -apple-system, system-ui, sans-serif; }
+a { color: var(--tide); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--tide); outline-offset: 3px; border-radius: 4px; }
+img { max-width: 100%; height: auto; display: block; }
+h1, h2, h3 { font-family: "Lora", Georgia, serif; font-weight: 600; letter-spacing: -0.01em; line-height: 1.15; text-wrap: balance; margin: 0; }
+.wrap { max-width: 1080px; margin: 0 auto; padding-inline: max(16px, env(safe-area-inset-left)); }
+
+/* Top bar */
+.top { position: absolute; inset: 0 0 auto; z-index: 3; }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; padding-block: 18px; }
+.brand { display: flex; align-items: center; gap: 10px; font: 600 20px/1 "Lora", serif; color: var(--ink); text-decoration: none; }
+.brand img { width: 36px; height: 36px; border-radius: 9px; }
+.top nav { display: flex; gap: 18px; font-size: 15px; }
+.top nav a { color: var(--ink); text-decoration: none; }
+.top nav a:hover { text-decoration: underline; }
+
+/* Hero: the sea */
+.hero { position: relative; min-height: 720px; padding-bottom: 340px; background: linear-gradient(var(--sky1), var(--sky2)); overflow: hidden; }
+.hero .copy { position: relative; z-index: 2; padding-top: 120px; text-align: center; }
+.hero { box-sizing: border-box; }
+.hero h1 { font-size: clamp(40px, 7vw, 72px); }
+.hero .line { font: italic 500 clamp(20px, 3vw, 26px)/1.3 "Lora", serif; color: var(--ink2); margin: 14px 0 0; }
+.hero p.lede { max-width: 34ch; margin: 18px auto 0; font-size: 19px; }
+.badge { display: inline-flex; align-items: center; gap: 10px; margin-top: 26px; padding: 13px 22px; border-radius: 14px;
+  background: var(--ink); color: var(--mist); font-weight: 600; text-decoration: none; }
+.promises { margin-top: 14px; font-size: 14px; font-weight: 600; color: var(--tide); }
+.sea { position: absolute; inset: auto 0 0 0; height: 300px; z-index: 1; }
+.sea svg { width: 100%; height: 100%; display: block; }
+.sun { position: absolute; left: 50%; bottom: 170px; width: 110px; height: 110px; margin-left: -55px; border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, #F6B07C, var(--sun) 60%); box-shadow: 0 0 80px 30px color-mix(in srgb, var(--sun) 35%, transparent); z-index: 0; }
+
+/* The day, told in four tides */
+.day { padding-block: 40px 20px; }
+.day > .wrap > h2 { font-size: clamp(28px, 4vw, 40px); text-align: center; }
+.day > .wrap > p { text-align: center; color: var(--ink2); margin: 10px auto 0; max-width: 52ch; }
+.tide { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: center; padding-block: 48px;
+  border-bottom: 1px solid var(--line); }
+.tide:nth-child(even) .shot { order: -1; }
+.tide .when { font: 600 13px/1 "Inter", sans-serif; letter-spacing: .08em; text-transform: uppercase; color: var(--tide); }
+.tide h3 { font-size: clamp(24px, 3vw, 32px); margin-top: 10px; }
+.tide p { color: var(--ink2); margin: 12px 0 0; max-width: 44ch; }
+.tide ul { margin: 14px 0 0; padding-left: 20px; color: var(--ink); }
+.tide li { margin: 4px 0; }
+.shot { justify-self: center; width: min(300px, 100%); }
+.shot img { border-radius: 36px; border: 8px solid var(--card); box-shadow: 0 18px 50px rgba(10, 42, 48, .18); }
+
+/* Privacy band (night sea) */
+.night { background: linear-gradient(var(--night1), var(--night2)); color: #E6F0EF; padding-block: 64px; margin-top: 40px; }
+.night h2 { font-size: clamp(28px, 4vw, 40px); }
+.night .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; margin-top: 28px; }
+.night .grid div { border-top: 2px solid #3C8F95; padding-top: 14px; }
+.night b { font-family: "Lora", serif; font-size: 20px; font-weight: 600; display: block; }
+.night p { color: #B5C9CC; margin: 6px 0 0; }
+.night a { color: #8FD3D5; }
+
+/* Text pages */
+.page { padding-block: 110px 60px; }
+.page h1 { font-size: clamp(34px, 5vw, 48px); }
+.page h2 { font-size: 24px; margin-top: 34px; }
+.page p, .page li { max-width: 68ch; }
+.page .date { color: var(--ink2); font-size: 15px; }
+.card { background: var(--card); border-radius: 20px; padding: 18px 22px; margin-top: 16px; }
+.card h3 { font-size: 19px; }
+.card p { margin: 6px 0 0; color: var(--ink2); }
+.pagehead { background: linear-gradient(var(--sky1), var(--mist)); }
+
+footer { padding-block: 34px 50px; color: var(--ink2); font-size: 14px; }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: space-between; }
+footer nav { display: flex; gap: 18px; }
+
+@media (max-width: 760px) {
+  .top nav { gap: 12px; font-size: 14px; }
+  .hero { min-height: 0; padding-bottom: 300px; }
+  .hero .copy { padding-top: 96px; }
+  .tide { grid-template-columns: minmax(0, 1fr); gap: 26px; padding-block: 36px; }
+  .tide:nth-child(even) .shot { order: 0; }
+  .night .grid { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .sea .w1 { animation: drift 14s ease-in-out infinite alternate; }
+  .sea .w2 { animation: drift 18s ease-in-out infinite alternate-reverse; }
+}
+@keyframes drift { from { transform: translateX(-2%); } to { transform: translateX(2%); } }
